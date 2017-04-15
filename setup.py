@@ -34,8 +34,8 @@ def version_update(cfg):
     major = version_info[0]
     
     if (major == 3):
-        cfg['libs']['matplotlib>=2.0.0']['apt-get'] = 'python3-tk'
-        cfg['libs']['matplotlib>=2.0.0']['yum'] = 'python3-tkinter'
+        cfg['libs']['matplotlib>=2.0.0']['apt-get'][0] = 'python3-tk'
+        cfg['libs']['matplotlib>=2.0.0']['yum'][0] = 'python3-tkinter'
 
 config = {
   'pre_tasks' : [

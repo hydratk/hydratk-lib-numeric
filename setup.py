@@ -2,6 +2,7 @@
 
 from setuptools import setup, find_packages
 from sys import argv, version_info
+from platform import python_implementation
 import hydratk.lib.install.task as task
 
 with open("README.rst", "r") as f:
@@ -16,9 +17,7 @@ classifiers = [
     "Operating System :: OS Independent",   
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python",    
-    "Programming Language :: Python :: 2.6",
     "Programming Language :: Python :: 2.7",
-    "Programming Language :: Python :: 3.3",
     "Programming Language :: Python :: 3.4",
     "Programming Language :: Python :: 3.5",
     "Programming Language :: Python :: 3.6",
@@ -32,10 +31,15 @@ classifiers = [
 def version_update(cfg):
     
     major = version_info[0]
+
+    if (python_implementation() != 'PyPy'):
+        cfg['modules'].append('matplotlib>=2.0.0')
+        cfg['modules'].append('scipy>=0.19.0')
     
-    if (major == 3):
-        cfg['libs']['matplotlib>=2.0.0']['apt-get'][0] = 'python3-tk'
-        cfg['libs']['matplotlib>=2.0.0']['yum'][0] = 'python3-tkinter'
+        if (major == 2):
+            cfg['libs']['matplotlib>=2.0.0'] = {'apt-get': ['python-tk'], 'yum': ['tkinter']}         
+        else:
+            cfg['libs']['matplotlib>=2.0.0'] = {'apt-get': ['python3-tk'], 'yum': ['python3-tkinter']}         
 
 config = {
   'pre_tasks' : [
@@ -46,21 +50,11 @@ config = {
           
   'modules' : [   
                'hydratk',
-               'numpy>=1.12.1',
-               'matplotlib>=2.0.0',
-               'scipy>=0.19.0',
+               'numpy>=1.12.1',                              
                'sympy>=1.0'                                      
               ],
           
   'libs' : {
-            'matplotlib>=2.0.0' : {
-                                   'apt-get' : [
-                                                'python-tk'
-                                               ],
-                                   'yum'     : [
-                                                'tkinter'
-                                               ]
-                                  }
            }                                   
 }    
     

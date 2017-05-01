@@ -19,11 +19,12 @@ dep_modules = {
                  },   
   'sympy'      : {
                   'min-version' : '1.0',
-                  'package'     : 'sympy'
+                  'package'     : 'sympy',
+                  'optional'    : True
                  }                                                                                                                                                                                                                                                                                                                
 }
 
-def get_dep_modules():
+def get_dependencies():
     """Method returns dependent modules
         
     Args:  
@@ -35,7 +36,23 @@ def get_dep_modules():
     """ 
     
     if (python_implementation() != 'PyPy'):
-        dep_modules['matplotlib'] = {'min-version' : '2.0.0',  'package' : 'matplotlib'}     
-        dep_modules['scipy']      = {'min-version' : '0.19.0', 'package' : 'scipy'}     
+        dep_modules['matplotlib'] = {'min-version' : '2.0.0',  'package' : 'matplotlib', 'optional': True}     
+        dep_modules['scipy']      = {'min-version' : '0.19.0', 'package' : 'scipy',      'optional': True}     
     
     return dep_modules 
+
+def _uninstall():
+    """Method returns additional uninstall data 
+        
+    Args:            
+       none
+           
+    Returns:
+       tuple: list (files), dict (modules)     
+                
+    """            
+        
+    files = []
+    mods = get_dependencies()
+            
+    return files, mods 

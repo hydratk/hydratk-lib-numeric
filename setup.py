@@ -28,18 +28,18 @@ classifiers = [
     "Topic :: Utilities"
 ]     
 
-def version_update(cfg):
+def version_update(cfg, *args):
     
     major = version_info[0]
 
     if (python_implementation() != 'PyPy'):
-        cfg['modules'].append('matplotlib>=2.0.0')
-        cfg['modules'].append('scipy>=0.19.0')
+        cfg['modules'].append({'module': 'matplotlib', 'version': '>=2.0.0',  'profile': 'math'})
+        cfg['modules'].append({'module': 'scipy',      'version': '>=0.19.0', 'profile': 'math'})
     
         if (major == 2):
-            cfg['libs']['matplotlib>=2.0.0'] = {'apt-get': ['python-tk'], 'yum': ['tkinter']}         
+            cfg['libs']['matplotlib'] = {'apt-get': ['python-tk'], 'yum': ['tkinter']}         
         else:
-            cfg['libs']['matplotlib>=2.0.0'] = {'apt-get': ['python3-tk'], 'yum': ['python3-tkinter']}         
+            cfg['libs']['matplotlib'] = {'apt-get': ['python3-tk'], 'yum': ['python3-tkinter']}         
 
 config = {
   'pre_tasks' : [
@@ -49,9 +49,9 @@ config = {
                 ],
           
   'modules' : [   
-               'hydratk',
-               'numpy>=1.12.1',                              
-               'sympy>=1.0'                                      
+               {'module': 'hydratk', 'version': '>=0.4.0',  'profile': 'basic'},
+               {'module': 'numpy',   'version': '>=1.12.1', 'profile': 'basic'},                              
+               {'module': 'sympy',   'version': '>=1.0',    'profile': 'math'}                                      
               ],
           
   'libs' : {

@@ -9,12 +9,10 @@ Package
 ^^^^^^^
 
 Install it via Python package managers PIP or easy_install.
-Filename after PIP download contains version, adapt sample code.
 
   .. code-block:: bash
   
-     $ sudo pip download hydratk-lib-numeric
-     $ sudo pip install hydratk-lib-numeric.tar.gz 
+     $ sudo pip install --no-binary :all: hydratk-lib-numeric
      
   .. code-block:: bash
   
@@ -22,8 +20,11 @@ Filename after PIP download contains version, adapt sample code.
      
   .. note::
   
-     Use PIP to install package from local file for correct installation.
-     When installed from remote repository, PIP sometimes doesn't call setup.py.     
+     PIP needs option --no-binary to run setup.py install.
+     Otherwise it runs setup.py bdist_wheel.
+     
+  .. Use option --install-option="--profile=p1,p2" to install only Python dependent modules included
+     in requested profiles. Offered profiles are basic, math. Full profile is installed by default.   
 
 Source
 ^^^^^^
@@ -43,6 +44,9 @@ Full PyPi URL contains MD5 hash, adapt sample code.
      $ tar -xf hydratk-lib-numeric.tar.gz
      $ cd ./hydratk-lib-numeric
      $ sudo python setup.py install
+     
+  .. Use option --profile=p1,p2 to install only Python dependent modules included
+     in requested profiles. Offered profiles are basic, math. Full profile is installed by default.        
      
   .. note::
   
@@ -81,6 +85,12 @@ matplotlib
 
 * apt-get: python-tk
 * yum: tkinter 
+
+Library offers following profiles.
+
+* basic - hydratk, numpy
+* math - basic profile, matplotlib, scipy, sympy
+* full - everything
     
 Installation
 ^^^^^^^^^^^^
@@ -136,9 +146,9 @@ Check hydratk-lib-numeric module is installed.
 Upgrade
 =======
 
-Use same procedure as for installation. Command options --upgrade (pip, easy_install) or --force (setup.py) are not necessary.
+Use same procedure as for installation. Use command option --upgrade for pip, easy_install, --force for setup.py.
 
 Uninstall
 =========    
 
-Run command htkuninstall numeric.          
+Run command htkuninstall. Use option -y if you want to uninstall also dependent Python modules (for advanced user).             

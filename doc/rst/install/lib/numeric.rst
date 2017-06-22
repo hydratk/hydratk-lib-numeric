@@ -108,28 +108,54 @@ See installation example for Linux based on Debian distribution, Python 2.7.
      **************************************
      *     Running pre-install tasks      *
      **************************************
-
+     
      *** Running task: version_update ***
-
+     
      *** Running task: install_libs ***
-
+     Checking python-tk...FAILED
+        Unable to locate package python-tk
      Installing package python-tk
-
+     
      *** Running task: install_modules ***
-
-     Installing module hydratk
+     Module hydratk already installed with version 0.5.0rc1
      Installing module numpy>=1.12.1
-     Installing module matplotlib>=2.0.0
-     Installing module scipy>=0.19.0
+     pip install "numpy>=1.12.1"
      Installing module sympy>=1.0
+     pip install "sympy>=1.0"
+     Installing module matplotlib>=2.0.0
+     pip install "matplotlib>=2.0.0"
+     Installing module scipy>=0.19.0
+     pip install "scipy>=0.19.0"
+     
      running install
      running bdist_egg
      running egg_info
      creating src/hydratk_lib_numeric.egg-info
-
-     Installed /usr/local/app/venv/p27/lib/python2.7/site-packages/hydratk_lib_numeric-0.1.0-py2.7.egg
-     Processing dependencies for hydratk-lib-numeric==0.1.0
-     Finished processing dependencies for hydratk-lib-numeric==0.1.0           
+     writing src/hydratk_lib_numeric.egg-info/PKG-INFO
+     writing top-level names to src/hydratk_lib_numeric.egg-info/top_level.txt
+     writing dependency_links to src/hydratk_lib_numeric.egg-info/dependency_links.txt
+     writing manifest file 'src/hydratk_lib_numeric.egg-info/SOURCES.txt'
+     reading manifest file 'src/hydratk_lib_numeric.egg-info/SOURCES.txt'
+     reading manifest template 'MANIFEST.in'
+     writing manifest file 'src/hydratk_lib_numeric.egg-info/SOURCES.txt'
+     installing library code to build/bdist.linux-x86_64/egg
+     running install_lib
+     running build_py
+     creating build
+     creating build/lib.linux-x86_64-2.7
+     creating build/lib.linux-x86_64-2.7/hydratk
+     ...
+     creating dist
+     creating 'dist/hydratk_lib_numeric-0.1.0rc1-py2.7.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+     removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+     Processing hydratk_lib_numeric-0.1.0rc1-py2.7.egg
+     creating /usr/local/lib/python2.7/dist-packages/hydratk_lib_numeric-0.1.0rc1-py2.7.egg
+     Extracting hydratk_lib_numeric-0.1.0rc1-py2.7.egg to /usr/local/lib/python2.7/dist-packages
+     Adding hydratk-lib-numeric 0.1.0rc1 to easy-install.pth file
+     Installed /usr/local/lib/python2.7/dist-packages/hydratk_lib_numeric-0.1.0rc1-py2.7.egg
+     Processing dependencies for hydratk-lib-numeric==0.1.0rc1
+     Finished processing dependencies for hydratk-lib-numeric==0.1.0rc1
+                
         
 Run
 ^^^

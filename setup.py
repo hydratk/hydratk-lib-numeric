@@ -1,9 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
+from setuptools import setup as st_setup
+from setuptools import find_packages as st_find_packages
 from sys import argv, version_info
 from platform import python_implementation
 import hydratk.lib.install.task as task
+import hydratk.lib.system.config as syscfg
+
+try:
+    os_info = syscfg.get_supported_os()
+except Exception as exc:
+    print(str(exc))
+    exit(1)
 
 with open("README.rst", "r") as f:
     readme = f.read()
@@ -32,19 +40,13 @@ classifiers = [
 def version_update(cfg, *args):
 
     major = version_info[0]
-
     if (python_implementation() != 'PyPy'):
-        cfg['modules'].append(
-            {'module': 'matplotlib', 'version': '>=2.0.0',  'profile': 'math'})
-        cfg['modules'].append(
-            {'module': 'scipy',      'version': '>=0.19.0', 'profile': 'math'})
+        cfg['modules'].append({'module': 'matplotlib', 'version': '>=2.0.0', 'profile': 'math'})
+        cfg['modules'].append({'module': 'scipy', 'version': '>=0.19.0', 'profile': 'math'})
 
-        if (major == 2):
-            cfg['libs']['matplotlib'] = {
-                'apt-get': ['python-tk'], 'yum': ['tkinter']}
-        else:
-            cfg['libs']['matplotlib'] = {
-                'apt-get': ['python3-tk'], 'yum': ['python3-tkinter']}
+        if (major == 3):
+            cfg['libs']['matplotlib']['debian']['apt-get'][0] = 'python3-tk'
+            cfg['libs']['matplotlib']['redhat']['yum'][0] = 'python3-tkinter'
 
 config = {
     'pre_tasks': [
@@ -60,21 +62,53 @@ config = {
     ],
 
     'libs': {
+        'matplotlib' : {
+            'debian': {
+                'apt-get': [
+                    'python-tk'
+                ],
+                'check': {
+                    'python-tk': {
+                        'cmd': 'dpkg --get-selections | grep python-tk',
+                        'errmsg': 'Unable to locate package python-tk'
+                    },
+                    'python3-tk': {
+                        'cmd': 'dpkg --get-selections | grep python3-tk',
+                        'errmsg': 'Unable to locate package python3-tk'
+                    }
+                }
+            },
+            'redhat': {
+                'yum': [
+                    'tkinter'
+                ],
+                'check': {
+                    'tkinter': {
+                        'cmd': 'yum -q list installed tkinter',
+                        'errmsg': 'Unable to locate package tkinter'
+                    },
+                    'python3-tkinter': {
+                        'cmd': 'yum -q list installed python3-tkinter',
+                        'errmsg': 'Unable to locate package python3-tkinter'
+                    }
+                }
+            }
+        }
     }
 }
 
 task.run_pre_install(argv, config)
 
-setup(
+st_setup(
     name='hydratk-lib-numeric',
-    version='0.1.0a.dev0',
+    version='0.1.0rc1',
     description='Libraries for numerical computing, data analysis',
     long_description=readme,
     author='Petr Rašek, HydraTK team',
     author_email='bowman@hydratk.org, team@hydratk.org',
     url='http://libraries.hydratk.org/numeric',
     license='BSD',
-    packages=find_packages('src'),
+    packages=st_find_packages('src'),
     package_dir={'': 'src'},
     classifiers=classifiers,
     zip_safe=False,

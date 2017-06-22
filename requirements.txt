@@ -1,4 +1,4 @@
-hydratk
+hydratk>=0.4.0
 numpy>=1.12.1
 matplotlib>=2.0.0 ; platform_python_implementation != 'PyPy'
 scipy>=0.19.0 ; platform_python_implementation != 'PyPy'

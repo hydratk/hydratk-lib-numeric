@@ -56,7 +56,7 @@ config = {
     ],
 
     'modules': [
-        {'module': 'hydratk', 'version': '>=0.4.0',  'profile': 'basic'},
+        {'module': 'hydratk', 'version': '>=0.5.0', 'profile': 'basic'},
         {'module': 'numpy',   'version': '>=1.12.1', 'profile': 'basic'},
         {'module': 'sympy',   'version': '>=1.0',    'profile': 'math'}
     ],

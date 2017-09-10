@@ -44,14 +44,9 @@ def version_update(cfg, *args):
         cfg['modules'].append({'module': 'matplotlib', 'version': '>=2.0.0', 'profile': 'math'})
         cfg['modules'].append({'module': 'scipy', 'version': '>=0.19.0', 'profile': 'math'})
 
-        if (major == 3):
-            cfg['libs']['matplotlib']['debian']['apt-get'][0] = 'python3-tk'
-            cfg['libs']['matplotlib']['redhat']['yum'][0] = 'python3-tkinter'
-
 config = {
     'pre_tasks': [
         version_update,
-        task.install_libs,
         task.install_modules
     ],
 
@@ -59,49 +54,14 @@ config = {
         {'module': 'hydratk', 'version': '>=0.5.0', 'profile': 'basic'},
         {'module': 'numpy',   'version': '>=1.12.1', 'profile': 'basic'},
         {'module': 'sympy',   'version': '>=1.0',    'profile': 'math'}
-    ],
-
-    'libs': {
-        'matplotlib' : {
-            'debian': {
-                'apt-get': [
-                    'python-tk'
-                ],
-                'check': {
-                    'python-tk': {
-                        'cmd': 'dpkg --get-selections | grep python-tk',
-                        'errmsg': 'Unable to locate package python-tk'
-                    },
-                    'python3-tk': {
-                        'cmd': 'dpkg --get-selections | grep python3-tk',
-                        'errmsg': 'Unable to locate package python3-tk'
-                    }
-                }
-            },
-            'redhat': {
-                'yum': [
-                    'tkinter'
-                ],
-                'check': {
-                    'tkinter': {
-                        'cmd': 'yum -q list installed tkinter',
-                        'errmsg': 'Unable to locate package tkinter'
-                    },
-                    'python3-tkinter': {
-                        'cmd': 'yum -q list installed python3-tkinter',
-                        'errmsg': 'Unable to locate package python3-tkinter'
-                    }
-                }
-            }
-        }
-    }
+    ]
 }
 
 task.run_pre_install(argv, config)
 
 st_setup(
     name='hydratk-lib-numeric',
-    version='0.1.0',
+    version='0.1.1.dev0',
     description='Libraries for numerical computing, data analysis',
     long_description=readme,
     author='Petr Rašek, HydraTK team',

@@ -71,21 +71,11 @@ Module matplotlib requires library which will be installed via Linux package man
   .. note ::
      
      Installation for Python2.6 and 3.3 is not supported due to key module numpy.
-
-  .. note ::
-  
-     Installation for Python3 has some differences.
-     Library python3-tk or python3-tkinter is installed instead of python-tk or tkinter. 
      
   .. note ::
   
      Installation for PyPy has some differences.
      Modules matplotlib, scipy are not supported and installed.      
-
-matplotlib
-
-* apt-get: python-tk
-* yum: tkinter 
 
 Library offers following profiles.
 
@@ -110,11 +100,6 @@ See installation example for Linux based on Debian distribution, Python 2.7.
      **************************************
      
      *** Running task: version_update ***
-     
-     *** Running task: install_libs ***
-     Checking python-tk...FAILED
-        Unable to locate package python-tk
-     Installing package python-tk
      
      *** Running task: install_modules ***
      Module hydratk already installed with version 0.5.0rc1

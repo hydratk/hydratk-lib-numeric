@@ -74,5 +74,5 @@ st_setup(
     zip_safe=False,
     keywords='hydratk,numerical computing,data analysis',
     requires_python='>=2.6,!=3.0.*,!=3.1.*,!=3.2.*',
-    platforms='Linux'
+    platforms='Linux,FreeBSD'
 )

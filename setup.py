@@ -61,7 +61,7 @@ task.run_pre_install(argv, config)
 
 st_setup(
     name='hydratk-lib-numeric',
-    version='0.1.1.dev0',
+    version='0.1.1',
     description='Libraries for numerical computing, data analysis',
     long_description=readme,
     author='Petr Rašek, HydraTK team',

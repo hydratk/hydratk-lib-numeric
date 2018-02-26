@@ -156,11 +156,11 @@ Check hydratk-lib-numeric module is installed.
      hydratk-lib-numeric (0.1.0)    
      
 Upgrade
-=======
+^^^^^^^
 
 Use same procedure as for installation. Use command option --upgrade for pip, easy_install, --force for setup.py.
 
 Uninstall
-=========    
+^^^^^^^^^
 
 Run command htkuninstall. Use option -y if you want to uninstall also dependent Python modules (for advanced user).             

@@ -66,8 +66,6 @@ These modules will be installed automatically, if not installed yet.
 * scipy
 * sympy
 
-Module matplotlib requires library which will be installed via Linux package managers, if not installed yet.
-
   .. note ::
      
      Installation for Python2.6 and 3.3 is not supported due to key module numpy.

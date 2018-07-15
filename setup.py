@@ -39,7 +39,6 @@ classifiers = [
 
 def version_update(cfg, *args):
 
-    major = version_info[0]
     if (python_implementation() != 'PyPy'):
         cfg['modules'].append({'module': 'matplotlib', 'version': '>=2.0.0', 'profile': 'math'})
         cfg['modules'].append({'module': 'scipy', 'version': '>=0.19.0', 'profile': 'math'})
